@@ -89,7 +89,6 @@ if (isset($_SESSION['data']) != "") {
         <?php
           $total +=  $priceall;
           $_SESSION['total'] = $total;
-          $data[$i]['count'] = 1;
           $count_products = 0;
         } ?>
         <tr>
@@ -104,6 +103,9 @@ if (isset($_SESSION['data']) != "") {
           </td>
         </tr>
         <?php
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
         $_SESSION['send_order'] = $data;
         ?>
       <?php } else { ?>
