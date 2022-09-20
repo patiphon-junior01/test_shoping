@@ -5,12 +5,12 @@ $count = 0;
 
 if (isset($_SESSION['data']) != "") {
   $array = $_SESSION['data'];
+  $count  = count($array) > 0  ?  count($array) : 0;
+  $_SESSION["count_order"] = $count;
   // echo "<pre>";
   // print_r($array);
   // echo "</pre>";
   // echo count($array);
-  $count  = count($array) > 0  ?  count($array) : 0;
-  $_SESSION["count_order"] = $count;
 }
 
 ?>
@@ -57,7 +57,6 @@ if (isset($_SESSION['data']) != "") {
 
     </div>
 
-    <!-- <h1 id="respone">0</h1> -->
     <a href="logout.php">ออก</a>
   </div>
 
@@ -67,8 +66,6 @@ if (isset($_SESSION['data']) != "") {
     $("document").ready(() => {
       $(".addorder").click(function() {
         var mid = $(this).attr("id");
-        // console.log(mid);
-
         $.ajax({
           url: "session.php",
           method: "post",
@@ -76,7 +73,6 @@ if (isset($_SESSION['data']) != "") {
             id: mid
           },
           success: function(response) {
-            // $("#respone").text(data);
             location.reload();
             console.log(response);
           }

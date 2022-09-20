@@ -17,6 +17,7 @@ try {
   if ($result) {
     unset($_SESSION['total']);
     unset($_SESSION['data']);
+    unset($_SESSION['send_order']);
     echo "<script>location.assign('index.php');</script>";
   }
 } catch (Exception $e) {

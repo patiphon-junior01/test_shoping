@@ -23,7 +23,6 @@ if (isset($_SESSION['data']) != "") {
   $count_products = 0;
   $count_delete = 0;
 
-  $array = $_SESSION['data'];
   $count  = count($array) > 0  ?  count($array) : 0;
   $_SESSION["count_order"] = $count;
   $count_order = isset($_SESSION["count_order"]) ? $_SESSION["count_order"] : 0;
@@ -54,15 +53,16 @@ if (isset($_SESSION['data']) != "") {
         <th>detail</th>
         <th>count</th>
         <th>price</th>
-        <th>priceall</th>
+        <th>priceAll</th>
         <th>action</th>
       </tr>
     </thead>
     <tbody>
 
       <?php if ($array != "" && isset($_SESSION['data']) != "") { ?>
+
         <?php for ($i  = 0; $i < count($data); $i++) {
-          $id_for1 = $input[$i]['id'];
+          $id_for1 = $data[$i]['id'];
           for ($k  = 0; $k < count($array2); $k++) {
             $id_for2 = $array2[$k]['id'];
             if ($id_for1 ==  $id_for2) {
@@ -89,17 +89,16 @@ if (isset($_SESSION['data']) != "") {
         <?php
           $total +=  $priceall;
           $_SESSION['total'] = $total;
-          $input[$i]['count'] = 1;
+          $data[$i]['count'] = 1;
           $count_products = 0;
         } ?>
         <tr>
-
           <td colspan="3" align="left"><?= $count_order . " : รายการ  "; ?></td>
           <td colspan="4" align="right"><?= number_format($total, 2) ?></td>
         </tr>
         <tr>
           <td colspan="7" align="right">
-            <button class="confrim" onclick="confrim()">
+            <button class="confrim" onclick="confirm()">
               ยืนยันออเดอร์
             </button>
           </td>
@@ -138,9 +137,9 @@ if (isset($_SESSION['data']) != "") {
           }
         });
       });
+
       $(".add").click(function() {
         var mid = $(this).attr("id");
-        // console.log(mid);
 
         $.ajax({
           url: "session.php",
@@ -149,7 +148,6 @@ if (isset($_SESSION['data']) != "") {
             id: mid
           },
           success: function(response) {
-            // $("#respone").text(data);
             location.reload();
             console.log(response);
           }
@@ -157,8 +155,8 @@ if (isset($_SESSION['data']) != "") {
       });
     })
 
-    function confrim() {
-      location.assign("confrim.php");
+    function confirm() {
+      location.assign("confirm.php");
     }
   </script>
 </body>
